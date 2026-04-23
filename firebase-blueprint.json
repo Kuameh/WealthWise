@@ -1,0 +1,29 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+{
+  "entities": {
+    "Holding": {
+      "title": "Holding",
+      "description": "An asset holding in the user's portfolio.",
+      "type": "object",
+      "properties": {
+        "ticker": { "type": "string", "description": "The stock or ETF ticker symbol." },
+        "marketType": { "type": "string", "enum": ["US", "GSE", "ETF"], "description": "The market category." },
+        "shares": { "type": "number", "description": "Number of shares owned." },
+        "averageCost": { "type": "number", "description": "Average cost basis per share." },
+        "userId": { "type": "string", "description": "The ID of the user who owns this holding." },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last updated timestamp." }
+      },
+      "required": ["ticker", "marketType", "shares", "averageCost", "userId"]
+    }
+  },
+  "firestore": {
+    "holdings/{holdingId}": {
+      "schema": "Holding",
+      "description": "Collection of stock holdings."
+    }
+  }
+}
